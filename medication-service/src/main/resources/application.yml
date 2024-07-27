@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: medication-service
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+  jpa:
+    show-sql: true
+    database: H2
+    properties:
+      hibernate:
+        check_nullability: true    #hibernate check nullability before execute query
+    hibernate:
+      ddl-auto: 'create-drop'
+  datasource:
+    url: ${datasource.url:jdbc:h2:mem:medicationdb}  #TODO: fecth value from HashiCorp Vault
+    username: ${datasource.username:sa}              #TODO: fecth value from HashiCorp Vault
+    password: ${datasource.password:1}               #TODO: fecth value from HashiCorp Vault
+
+#ACTUATOR
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, env, beans, threaddump
