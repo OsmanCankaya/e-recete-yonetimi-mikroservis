@@ -24,3 +24,13 @@ management:
     web:
       exposure:
         include: health, info, metrics, env, beans, threaddump
+
+#EUREKA
+server:
+  port: 0
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}

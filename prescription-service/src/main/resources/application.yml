@@ -40,5 +40,13 @@ springdoc:
     path: /prescription-service/swagger-ui.html
   paths-to-match: /api/**
 
+#EUREKA
 server:
   port: 8081
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    service-url:
+      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
