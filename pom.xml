@@ -6,6 +6,7 @@
 
   <modules>
     <module>medication-service</module>
+    <module>prescription-service</module>
   </modules>
 
   <parent>

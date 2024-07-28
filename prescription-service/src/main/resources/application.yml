@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: prescription-service
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+  jpa:
+    show-sql: true
+    database: H2
+    properties:
+      hibernate:
+        check_nullability: true    #hibernate check nullability before execute query
+    hibernate:
+      ddl-auto: 'create-drop'
+  datasource:
+    url: ${datasource.url:jdbc:h2:mem:prescriptiondb}   #TODO: fetch value from HashiCorp Vault
+    username: ${datasource.username:sa}                 #TODO: fetch value from HashiCorp Vault
+    password: ${datasource.password:1}                  #TODO: fetch value from HashiCorp Vault
+
+#logging:
+#  level:
+#    root: DEBUG
+
+#ACTUATOR
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+#DOCUMENTATION
+springdoc:
+  api-docs:
+    enabled: true
+    path: /prescription-service/v3/api-docs
+  show-actuator: true
+  swagger-ui:
+    enabled: true
+    path: /prescription-service/swagger-ui.html
+  paths-to-match: /api/**
+
+server:
+  port: 8081
