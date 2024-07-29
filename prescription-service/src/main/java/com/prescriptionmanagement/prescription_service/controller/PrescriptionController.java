@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -29,6 +30,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Validated
 @Slf4j
+@RefreshScope
 @Tag(name = "Prescription Management", description = "It related to creating and managing prescriptions")
 public class PrescriptionController {
     private final PrescriptionService prescriptionService;

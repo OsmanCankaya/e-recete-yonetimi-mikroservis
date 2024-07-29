@@ -1,5 +1,6 @@
 package com.prescriptionmanagement.prescription_service.service;
 
+import com.prescriptionmanagement.prescription_service.client.MedicationServiceClient;
 import com.prescriptionmanagement.prescription_service.exception.PrescriptionNoAlreadyExistsException;
 import com.prescriptionmanagement.prescription_service.exception.PrescriptionNotFoundException;
 import com.prescriptionmanagement.prescription_service.mapper.PrescriptionMapper;
@@ -8,7 +9,6 @@ import com.prescriptionmanagement.prescription_service.payload.request.AddMedica
 import com.prescriptionmanagement.prescription_service.payload.request.CreatePrescriptionRequest;
 import com.prescriptionmanagement.prescription_service.payload.response.AddMedicationResponse;
 import com.prescriptionmanagement.prescription_service.payload.response.PrescriptionResponse;
-import com.prescriptionmanagement.prescription_service.payload.response.client.MedicationIdResponse;
 import com.prescriptionmanagement.prescription_service.payload.response.client.MedicationResponse;
 import com.prescriptionmanagement.prescription_service.repository.PrescriptionRespository;
 import lombok.RequiredArgsConstructor;
@@ -23,19 +23,16 @@ import java.util.stream.Collectors;
 public class PrescriptionService {
     private final PrescriptionRespository respository;
     private final PrescriptionMapper mapper;
+    private final MedicationServiceClient medicationServiceClient;
 
     public PrescriptionResponse getByID(UUID id) {
         //getting prescription from db
         Prescription prescription = respository.findById(id)
                 .orElseThrow(() ->
                         new PrescriptionNotFoundException("Prescription not found by id:" + id));
-        //TODO: fetch  medications detail via feign client
+        //fecthing medications detail via feign client
         List<MedicationResponse> medicationResponses = prescription.getMedications().stream().map(uuid ->
-                new MedicationResponse(new MedicationIdResponse(uuid,"default-serialNumber"),
-                        "default-name",
-                        "default-manufacturer",
-                        false))
-                .collect(Collectors.toList());
+                medicationServiceClient.getById(uuid).getBody()).collect(Collectors.toList());
 
         PrescriptionResponse prescriptionResponse = mapper.prescriptionToPrescriptionResponse(prescription, medicationResponses);
         return prescriptionResponse;
@@ -50,8 +47,7 @@ public class PrescriptionService {
     }
 
     public AddMedicationResponse addMedicationToPrescription(AddMedicationRequest request) {
-        //TODO: fetch  medications detail via feign client
-        UUID medicationId = UUID.randomUUID();
+        UUID medicationId = medicationServiceClient.getBySerialNumber(request.medicationSerialNumber()).getBody().id();
         Prescription prescription = respository
                 .findById(request.prescriptionId())
                 .orElseThrow(() ->
