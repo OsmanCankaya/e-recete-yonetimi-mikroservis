@@ -7,7 +7,7 @@ spring:
         - id: medication-service
           uri: lb://medication-service
           predicates:
-            - Path=/api/v1/medication/**    # bu ?ekilde gelen iste?i medicationService'e ilet demek
+            - Path=/api/v1/medication/**
         - id: prescription-service
           uri: lb://prescription-service
           predicates:

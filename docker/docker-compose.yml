@@ -1,5 +1,17 @@
 version: '2'
 services:
+  vault:
+    image: vault:1.12.7
+    container_name: vault
+    env_file:
+      - path: ./vault/vault.env
+    ports:
+      - "8200:8200"
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - ./vault/init:/init
+    entrypoint: /bin/sh -c "vault server -dev & /init/load_vault_secrets.sh"
   zipkin:
     image: openzipkin/zipkin:2.23.19
     container_name: zipkin

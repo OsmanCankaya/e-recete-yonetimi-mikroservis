@@ -15,7 +15,7 @@ import io.swagger.v3.oas.annotations.info.Info;
                         email = "osmancankayabilmuh@gmail.com"
                 ),
                 description = "Prescription Management - Microservice" +
-                        "(Spring boot, Rest Api, hashiCorp Vault (centralizing configuration), " +
+                        "(Spring boot, Rest Api, hashiCorp Vault (centralized configuration), " +
                         "Eureka Server, Resilience4j, Zipkin, Feign Client, Docker, Actuator, " +
                         "Open Api, Lombok, Mapstruct)", //TODO: teknolojileri kontrol et
                 title = "Prescription Management Online App",

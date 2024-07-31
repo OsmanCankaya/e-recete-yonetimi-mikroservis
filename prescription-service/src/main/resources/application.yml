@@ -14,11 +14,27 @@ spring:
     hibernate:
       ddl-auto: 'create-drop'
   datasource:
-    url: ${datasource.url:jdbc:h2:mem:prescriptiondb}   #TODO: fetch value from HashiCorp Vault
-    username: ${datasource.username:sa}                 #TODO: fetch value from HashiCorp Vault
-    password: ${datasource.password:1}                  #TODO: fetch value from HashiCorp Vault
+    url: ${datasource.url:jdbc:h2:mem:prescriptiondb}   #fecthing value from HashiCorp Vault
+    username: ${datasource.username:sa}                 #fecthing value from HashiCorp Vault
+    password: ${datasource.password:1}                  #fecthing value from HashiCorp Vault
   zipkin:
     base-url: http://localhost:9411
+  cloud:
+    vault:
+      kv:
+        backend: prescription-service
+        default-context: config
+        enabled: 'true'
+      enabled: 'true'
+      authentication: token                   #Note: set this value as an environment variable for better security in prod environment
+      uri: 'http://localhost:8200'            #Note: set this value as an environment variable for better security in prod environment
+      token: 'root-token'                     #Note: Use generated token and key to unseal in prod environment
+    config:
+      enabled: 'false'
+  config:
+    import: optional:vault://
+  profiles:
+    active: dev
 
 #logging:
 #  level:
