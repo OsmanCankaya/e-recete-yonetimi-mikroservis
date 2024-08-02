@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "7fa4661b-0ca1-4d43-9303-2ed8b95c2221",
+		"name": "Prescription Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "203244"
+	},
+	"item": [
+		{
+			"name": "Api GATEWAY",
+			"item": [
+				{
+					"name": "create presction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"prescriptionNo\": \"C-21101a111\",\r\n  \"doctorName\": \"Dr. Mehmet Öz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8889/api/v1/prescription",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8889",
+							"path": [
+								"api",
+								"v1",
+								"prescription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add medication Aspirin-101",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"prescriptionId\": \"b823377c-9dc0-43c0-b9bc-f921f4fffabb\",\r\n  \"medicationSerialNumber\": \"Aspirin-101\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8889/api/v1/prescription",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8889",
+							"path": [
+								"api",
+								"v1",
+								"prescription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add medication Parasetamol-102",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"prescriptionId\": \"b823377c-9dc0-43c0-b9bc-f921f4fffabb\",\r\n  \"medicationSerialNumber\": \"Parasetamol-102\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8889/api/v1/prescription",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8889",
+							"path": [
+								"api",
+								"v1",
+								"prescription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add medication TylolHot-103",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"prescriptionId\": \"b823377c-9dc0-43c0-b9bc-f921f4fffabb\",\r\n  \"medicationSerialNumber\": \"TylolHot-103\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8889/api/v1/prescription",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8889",
+							"path": [
+								"api",
+								"v1",
+								"prescription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add medication",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"prescriptionId\": \"b823377c-9dc0-43c0-b9bc-f921f4fffabb\",\r\n  \"medicationSerialNumber\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8889/api/v1/prescription",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8889",
+							"path": [
+								"api",
+								"v1",
+								"prescription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get prescription by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8889/api/v1/prescription/b823377c-9dc0-43c0-b9bc-f921f4fffabb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8889",
+							"path": [
+								"api",
+								"v1",
+								"prescription",
+								"b823377c-9dc0-43c0-b9bc-f921f4fffabb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
